@@ -22,8 +22,23 @@ public class EnderecoService {
         return repositorio.findAll();
     }
 
-    public Endereco buscaEnderecoPorId(Long id) {
-        return repositorio.findById(id).orElse(null);
+    public EnderecoDTO buscaEnderecoDTOPorId(Long id) {
+            Endereco endereco = repositorio.findById(id).orElse(null);
+            if (endereco != null) {
+                return toEnderecoDTO(endereco);
+            }
+            return null;
+    }
+
+    private EnderecoDTO toEnderecoDTO(Endereco endereco) {
+        EnderecoDTO dto = new EnderecoDTO();
+        dto.setRua(endereco.getRua());
+        dto.setNumero(endereco.getNumero());
+        dto.setBairro(endereco.getBairro());
+        dto.setCidade(endereco.getCidade());
+        dto.setEstado(endereco.getEstado());
+        return dto;
+
     }
 
     public List<Endereco> buscarEnderecosPorRua(String rua) {

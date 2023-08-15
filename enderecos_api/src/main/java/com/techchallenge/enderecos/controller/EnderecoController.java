@@ -33,10 +33,11 @@ public class EnderecoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Endereco> buscaEnderecoPorId(@PathVariable Long id) {
-        Endereco endereco = enderecoService.buscaEnderecoPorId(id);
-        if (endereco != null) {
-            return ResponseEntity.ok(endereco);
+    public ResponseEntity<EnderecoDTO> buscaEnderecoPorId(@PathVariable Long id) {
+        EnderecoDTO enderecoDTO = enderecoService.buscaEnderecoDTOPorId(id);
+
+        if (enderecoDTO != null) {
+            return ResponseEntity.ok(enderecoDTO);
         } else {
             return ResponseEntity.notFound().build();
         }

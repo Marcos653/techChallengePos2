@@ -3,6 +3,9 @@ package com.techchallenge.enderecos.dominio;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Entity
 @Table(name = "tb_enderecos")
@@ -24,7 +27,11 @@ public class Endereco {
 
     @ManyToOne
     @JoinColumn(name = "idUsuario")
-    private Usuario usuario;
+    private MockUsuario mockUsuario;
+
+    @OneToMany(mappedBy = "endereco")
+    private Set<EletrodomesticoEnderecoPessoa> eletrodomesticosDaCasa = new HashSet<>();
+
 
     public Endereco(String rua, Integer numero, String bairro, String cidade, String estado) {
         this.rua = rua;

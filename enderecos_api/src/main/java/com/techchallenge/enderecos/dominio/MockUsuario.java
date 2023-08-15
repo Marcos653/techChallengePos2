@@ -7,13 +7,16 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tb_usuario")
-public class Usuario {
+public class MockUsuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
     private String nome;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "mockUsuario")
     private Set<Endereco> enderecos = new HashSet<>();
+
+    @OneToMany(mappedBy = "mockUsuario")
+    private Set<MockPessoa> pessoas = new HashSet<>();
 }

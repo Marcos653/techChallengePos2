@@ -1,7 +1,7 @@
 package com.techchallenge.enderecos.services;
 
 import com.techchallenge.enderecos.dominio.Endereco;
-import com.techchallenge.enderecos.dominio.Usuario;
+import com.techchallenge.enderecos.dominio.MockUsuario;
 import com.techchallenge.enderecos.repository.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class UsuarioService {
         this.usuarioRepositorio = usuarioRepositorio;
     }
 
-    public List<Usuario> buscarUsuariosPorEndereco(Endereco endereco) {
+    public List<MockUsuario> buscarUsuariosPorEndereco(Endereco endereco) {
         return usuarioRepositorio.findByEnderecos(endereco);
     }
 }
