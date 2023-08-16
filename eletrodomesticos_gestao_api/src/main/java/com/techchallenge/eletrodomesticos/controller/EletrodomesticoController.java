@@ -1,5 +1,7 @@
 package com.techchallenge.eletrodomesticos.controller;
 
+import com.techchallenge.eletrodomesticos.controller.form.EletrodomesticoRequest;
+import com.techchallenge.eletrodomesticos.controller.form.EletrodomesticoResponse;
 import com.techchallenge.eletrodomesticos.dominio.Eletrodomestico;
 import com.techchallenge.eletrodomesticos.services.EletrodomesticoService;
 import lombok.RequiredArgsConstructor;
@@ -17,26 +19,26 @@ public class EletrodomesticoController {
     private final EletrodomesticoService service;
 
     @PostMapping
-    public ResponseEntity<Eletrodomestico> create(@RequestBody Eletrodomestico eletrodomestico) {
-        Eletrodomestico saved = service.save(eletrodomestico);
+    public ResponseEntity<EletrodomesticoResponse> create(@RequestBody EletrodomesticoRequest request) {
+        var saved = service.save(request);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Eletrodomestico>> list() {
+    public ResponseEntity<List<EletrodomesticoResponse>> list() {
         return ResponseEntity.ok(service.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Eletrodomestico> getById(@PathVariable Long id) {
+    public ResponseEntity<EletrodomesticoResponse> getById(@PathVariable Long id) {
         return service.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Eletrodomestico> update(@PathVariable Long id, @RequestBody Eletrodomestico eletrodomestico) {
-        Eletrodomestico updated = service.save(eletrodomestico);
+    public ResponseEntity<EletrodomesticoResponse> update(@PathVariable Long id, @RequestBody EletrodomesticoRequest request) {
+        var updated = service.save(request);
         return ResponseEntity.ok(updated);
     }
 
@@ -48,13 +50,13 @@ public class EletrodomesticoController {
 
     @GetMapping("/{id}/consumo")
     public ResponseEntity<Double> getConsumo(@PathVariable Long id) {
-        Double consumo = service.getConsumoEnergetico(id);
+        var consumo = service.getConsumoEnergetico(id);
         return ResponseEntity.ok(consumo);
     }
 
-    @GetMapping("/usuario/{usuario_id}")
-    public ResponseEntity<List<Eletrodomestico>> getByUsuario(@PathVariable("usuario_id") Long usuarioId) {
-        return ResponseEntity.ok(service.findByPessoaId(usuarioId));
+    @GetMapping("/usuario/{id}")
+    public ResponseEntity<List<EletrodomesticoResponse>> getByUsuario(@PathVariable Long id) {
+        return ResponseEntity.ok(service.findByPessoaId(id));
     }
 }
 

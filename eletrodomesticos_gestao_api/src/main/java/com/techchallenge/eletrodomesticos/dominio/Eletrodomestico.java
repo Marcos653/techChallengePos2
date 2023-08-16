@@ -1,7 +1,10 @@
 package com.techchallenge.eletrodomesticos.dominio;
 
+import com.techchallenge.eletrodomesticos.controller.form.EletrodomesticoRequest;
 import jakarta.persistence.*;
 import lombok.*;
+
+import static org.springframework.beans.BeanUtils.copyProperties;
 
 @Data
 @AllArgsConstructor
@@ -32,5 +35,11 @@ public class Eletrodomestico {
 
     public Double getConsumoEnergetico() {
         return this.potencia * this.tempoDeUso;
+    }
+
+    public static Eletrodomestico of(EletrodomesticoRequest request) {
+        var response = new Eletrodomestico();
+        copyProperties(request, response);
+        return response;
     }
 }
