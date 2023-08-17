@@ -1,8 +1,11 @@
 package com.techchallenge.eletrodomesticos.dominio;
 
 import com.techchallenge.eletrodomesticos.controller.form.EletrodomesticoRequest;
+import com.techchallenge.eletrodomesticos.dominio.mocks.PessoaStub;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
 
@@ -30,16 +33,17 @@ public class Eletrodomestico {
     private Integer potencia;
     @Column(name = "tempo_de_uso")
     private Double tempoDeUso;
-    @Column(name = "pessoa_id")
-    private Long pessoaId;
-
-    public Double getConsumoEnergetico() {
-        return this.potencia * this.tempoDeUso;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pessoa_id")
+    private PessoaStub pessoa;
 
     public static Eletrodomestico of(EletrodomesticoRequest request) {
         var response = new Eletrodomestico();
         copyProperties(request, response);
         return response;
+    }
+
+    public Double getConsumoEnergetico() {
+        return this.potencia * this.tempoDeUso;
     }
 }

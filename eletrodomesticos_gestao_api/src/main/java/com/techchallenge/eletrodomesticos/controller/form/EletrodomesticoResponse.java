@@ -2,7 +2,6 @@ package com.techchallenge.eletrodomesticos.controller.form;
 
 import com.techchallenge.eletrodomesticos.dominio.Eletrodomestico;
 import com.techchallenge.eletrodomesticos.dominio.Tensao;
-import com.techchallenge.eletrodomesticos.dominio.mocks.PessoaStub;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,16 +15,18 @@ import static org.springframework.beans.BeanUtils.copyProperties;
 @AllArgsConstructor
 public class EletrodomesticoResponse {
 
+    private Long id;
     private String nome;
     private String modelo;
     private String marca;
     private Tensao tensao;
     private Integer potencia;
     private Double tempoDeUso;
-    private PessoaStub pessoa;
+    private PessoaResponse pessoa;
 
     public static EletrodomesticoResponse of(Eletrodomestico request) {
         var response = new EletrodomesticoResponse();
+        response.setPessoa(PessoaResponse.of(request.getPessoa()));
         copyProperties(request, response);
         return response;
     }

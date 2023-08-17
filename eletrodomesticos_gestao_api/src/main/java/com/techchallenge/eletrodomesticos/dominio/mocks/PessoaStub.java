@@ -3,13 +3,15 @@ package com.techchallenge.eletrodomesticos.dominio.mocks;
 import com.techchallenge.eletrodomesticos.dominio.Eletrodomestico;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "pessoas")
 public class PessoaStub {
@@ -30,8 +32,7 @@ public class PessoaStub {
     private Parentesco parentesco;
     @Column(name = "idade")
     private Integer idade;
-    @OneToMany
-    @JoinColumn(name="pessoa_id", referencedColumnName="id")
+    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Eletrodomestico> eletrodomesticos;
 
     public PessoaStub(Long id, String nome, LocalDate dataNascimento, Sexo sexo, Parentesco parentesco, Integer idade) {

@@ -8,14 +8,13 @@ import com.techchallenge.eletrodomesticos.repository.EletrodomesticoRepository;
 import com.techchallenge.eletrodomesticos.repository.PessoaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
+import static org.springframework.beans.BeanUtils.copyProperties;
 
 @Service
 @RequiredArgsConstructor
@@ -27,20 +26,31 @@ public class EletrodomesticoService {
     @Transactional
     public EletrodomesticoResponse save(EletrodomesticoRequest request) {
         var eletrodomestico = Eletrodomestico.of(request);
+
+        eletrodomestico.setPessoa(findPessoaById(request.getPessoaId()));
         eletrodomesticoRepository.save(eletrodomestico);
-        return createResponseWithPessoa(eletrodomestico);
+
+        return convertToResponse(eletrodomestico);
     }
 
     public List<EletrodomesticoResponse> findAll() {
         return eletrodomesticoRepository.findAll()
                 .stream()
-                .map(EletrodomesticoResponse::of)
-                .collect(Collectors.toList());
+                .map(this::convertToResponse)
+                .toList();
     }
 
     public Optional<EletrodomesticoResponse> findById(Long id) {
-        return eletrodomesticoRepository.findById(id)
-                .map(EletrodomesticoResponse::of);
+        return Optional.of(convertToResponse(findEletrodomesticoById(id)));
+    }
+
+    public EletrodomesticoResponse update(Long id, EletrodomesticoRequest request) {
+        var existingEletrodomestico = findEletrodomesticoById(id);
+
+        updateEletrodomesticoFromRequest(request, existingEletrodomestico);
+        eletrodomesticoRepository.save(existingEletrodomestico);
+
+        return convertToResponse(existingEletrodomestico);
     }
 
     @Transactional
@@ -51,24 +61,29 @@ public class EletrodomesticoService {
     public List<EletrodomesticoResponse> findByPessoaId(Long id) {
         return eletrodomesticoRepository.findByPessoaId(id)
                 .stream()
-                .map(EletrodomesticoResponse::of)
-                .collect(Collectors.toList());
+                .map(this::convertToResponse)
+                .toList();
     }
 
     public Double getConsumoEnergetico(Long id) {
-        var eletrodomestico = eletrodomesticoRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Eletrodomestico não encontrado"));
-        return eletrodomestico.getConsumoEnergetico();
+        return findEletrodomesticoById(id).getConsumoEnergetico();
     }
 
-    private EletrodomesticoResponse createResponseWithPessoa(Eletrodomestico request) {
-        var response = EletrodomesticoResponse.of(request);
-        var pessoa = findPessoaById(request.getPessoaId());
-        response.setPessoa(pessoa);
-        return response;
+    private Eletrodomestico findEletrodomesticoById(Long id) {
+        return eletrodomesticoRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Eletrodomestico não encontrado com ID: " + id));
     }
 
-    public PessoaStub findPessoaById(Long id) {
+    private void updateEletrodomesticoFromRequest(EletrodomesticoRequest request, Eletrodomestico eletrodomestico) {
+        copyProperties(request, eletrodomestico, "id");
+        eletrodomestico.setPessoa(findPessoaById(request.getPessoaId()));
+    }
+
+    private EletrodomesticoResponse convertToResponse(Eletrodomestico eletrodomestico) {
+        return EletrodomesticoResponse.of(eletrodomestico);
+    }
+
+    private PessoaStub findPessoaById(Long id) {
         return pessoaRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Pessoa não encontrada"));
     }
