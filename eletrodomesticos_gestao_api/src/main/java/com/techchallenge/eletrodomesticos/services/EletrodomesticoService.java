@@ -58,7 +58,7 @@ public class EletrodomesticoService {
 
     @Transactional
     public void deleteById(Long id) {
-        eletrodomesticoRepository.deleteById(id);
+        eletrodomesticoRepository.deleteById(findEletrodomesticoById(id).getId());
     }
 
     public List<EletrodomesticoResponse> findByPessoaId(Long id) {
