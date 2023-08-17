@@ -10,6 +10,9 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+
 
 import java.time.Instant;
 
@@ -35,11 +38,11 @@ public class ControllerExceptionHandler {
         error.setStatus(status.value());
         error.setError("Valor inválido");
         error.setPath(request.getRequestURI());
-        error.setMessage(request.getRequestURI().contains("pessoas")
-                ? "Sexo aceitar apenas os valores MASCULINO, FEMININO, NAO_BINARIE."
-                : "Tensão aceita apenas os valores 110v ou 220v");
+        error.setMessage("Erro no cadastro de endereço");
+        error.setPath(request.getRequestURI());
         return ResponseEntity.status(status).body(error);
     }
+
     
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> tratarErro400(MethodArgumentNotValidException ex) {

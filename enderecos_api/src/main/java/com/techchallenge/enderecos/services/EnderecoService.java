@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -41,15 +43,52 @@ public class EnderecoService {
 
     }
 
-    public List<Endereco> buscarEnderecosPorRua(String rua) {
-        return repositorio.findByRuaIgnoreCase(rua);
+    public List<EnderecoDTO> buscarEnderecosDTOPorRua(String rua) {
+        List<Endereco> enderecos = repositorio.findByRuaIgnoreCase(rua);
+        return enderecos.stream()
+                .map(this::toEnderecoDTO)
+                .collect(Collectors.toList());
     }
 
-    public List<Endereco> buscarEnderecosPorBairro(String bairro) {
-        return repositorio.findByBairroIgnoreCase(bairro);
+    public List<EnderecoDTO> buscarEnderecosDTOPorBairro(String bairro) {
+        List<Endereco> enderecos = repositorio.findByBairroIgnoreCase(bairro);
+        return enderecos.stream()
+                .map(this::toEnderecoDTO)
+                .collect(Collectors.toList());
     }
 
-    public List<Endereco> buscarEnderecosPorCidade(String cidade) {
-        return repositorio.findByCidadeIgnoreCase(cidade);
+    public List<EnderecoDTO> buscarEnderecosDTOPorCidade(String cidade) {
+        List<Endereco> enderecos = repositorio.findByCidadeIgnoreCase(cidade);
+        return enderecos.stream()
+                .map(this::toEnderecoDTO)
+                .collect(Collectors.toList());
+    }
+
+    public boolean deleteEnderecoPorId(Long id) {
+        Optional<Endereco> enderecoOptional = repositorio.findById(id);
+
+        if (enderecoOptional.isPresent()) {
+            repositorio.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean atualizaEndereco(Long id, EnderecoDTO enderecoDTO) {
+        Optional<Endereco> enderecoOptional = repositorio.findById(id);
+
+        if (enderecoOptional.isPresent()) {
+            Endereco endereco = enderecoOptional.get();
+            endereco.setRua(enderecoDTO.getRua());
+            endereco.setNumero(enderecoDTO.getNumero());
+            endereco.setBairro(enderecoDTO.getBairro());
+            endereco.setCidade(enderecoDTO.getCidade());
+            endereco.setEstado(enderecoDTO.getEstado());
+            repositorio.save(endereco);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -20,4 +20,10 @@ public class UsuarioService {
     public List<MockUsuario> buscarUsuariosPorEndereco(Endereco endereco) {
         return usuarioRepositorio.findByEnderecos(endereco);
     }
+
+    public void salvarUsuario(MockUsuario mockUsuario) {
+        usuarioRepositorio.save(mockUsuario);
+    }
+
+
 }

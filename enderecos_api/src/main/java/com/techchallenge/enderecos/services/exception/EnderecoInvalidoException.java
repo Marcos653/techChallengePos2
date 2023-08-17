@@ -1,4 +1,4 @@
-package com.techchallenge.enderecos.services;
+package com.techchallenge.enderecos.services.exception;
 
 public class EnderecoInvalidoException extends RuntimeException {
 
