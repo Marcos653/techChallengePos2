@@ -1,4 +1,4 @@
-package com.techchallenge.eletrodomesticos.controller.form;
+package com.techchallenge.eletrodomesticos.controller.dto;
 
 import com.techchallenge.eletrodomesticos.dominio.Tensao;
 import jakarta.validation.constraints.Min;
@@ -36,6 +36,6 @@ public class EletrodomesticoRequest {
     @PositiveOrZero(message = "Tempo de Uso não pode ser negativo")
     private Double tempoDeUso;
 
-    @NotNull
+    @NotNull(message = "Pessoa id é obrigatório")
     private Long pessoaId;
 }

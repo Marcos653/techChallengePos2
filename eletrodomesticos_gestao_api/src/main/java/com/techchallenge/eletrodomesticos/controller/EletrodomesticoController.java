@@ -1,8 +1,9 @@
 package com.techchallenge.eletrodomesticos.controller;
 
-import com.techchallenge.eletrodomesticos.controller.form.EletrodomesticoRequest;
-import com.techchallenge.eletrodomesticos.controller.form.EletrodomesticoResponse;
+import com.techchallenge.eletrodomesticos.controller.dto.EletrodomesticoRequest;
+import com.techchallenge.eletrodomesticos.controller.dto.EletrodomesticoResponse;
 import com.techchallenge.eletrodomesticos.services.EletrodomesticoService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class EletrodomesticoController {
     private final EletrodomesticoService service;
 
     @PostMapping
-    public ResponseEntity<EletrodomesticoResponse> create(@RequestBody EletrodomesticoRequest request) {
+    public ResponseEntity<EletrodomesticoResponse> create(@RequestBody @Valid EletrodomesticoRequest request) {
         return new ResponseEntity<>(service.save(request), HttpStatus.CREATED);
     }
 
@@ -36,7 +37,7 @@ public class EletrodomesticoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<EletrodomesticoResponse> update(@PathVariable Long id,
-                                                          @RequestBody EletrodomesticoRequest request) {
+                                                          @RequestBody @Valid EletrodomesticoRequest request) {
         return ResponseEntity.ok(service.update(id, request));
     }
 

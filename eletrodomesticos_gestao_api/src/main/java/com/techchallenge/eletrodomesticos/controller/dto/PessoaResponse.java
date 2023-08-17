@@ -1,4 +1,4 @@
-package com.techchallenge.eletrodomesticos.controller.form;
+package com.techchallenge.eletrodomesticos.controller.dto;
 
 import com.techchallenge.eletrodomesticos.dominio.mocks.Parentesco;
 import com.techchallenge.eletrodomesticos.dominio.mocks.PessoaStub;

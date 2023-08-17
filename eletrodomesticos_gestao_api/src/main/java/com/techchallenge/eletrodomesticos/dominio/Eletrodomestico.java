@@ -1,6 +1,6 @@
 package com.techchallenge.eletrodomesticos.dominio;
 
-import com.techchallenge.eletrodomesticos.controller.form.EletrodomesticoRequest;
+import com.techchallenge.eletrodomesticos.controller.dto.EletrodomesticoRequest;
 import com.techchallenge.eletrodomesticos.dominio.mocks.PessoaStub;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
