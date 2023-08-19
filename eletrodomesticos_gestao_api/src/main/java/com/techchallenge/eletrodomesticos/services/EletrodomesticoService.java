@@ -1,19 +1,18 @@
 package com.techchallenge.eletrodomesticos.services;
 
+import com.techchallenge.eletrodomesticos.controller.dto.EletrodomesticoFilters;
 import com.techchallenge.eletrodomesticos.controller.dto.EletrodomesticoRequest;
 import com.techchallenge.eletrodomesticos.controller.dto.EletrodomesticoResponse;
 import com.techchallenge.eletrodomesticos.controller.exception.NotFoundException;
-import com.techchallenge.eletrodomesticos.controller.exception.ValidationException;
 import com.techchallenge.eletrodomesticos.dominio.Eletrodomestico;
-import com.techchallenge.eletrodomesticos.dominio.Tensao;
 import com.techchallenge.eletrodomesticos.dominio.mocks.PessoaStub;
 import com.techchallenge.eletrodomesticos.repository.EletrodomesticoRepository;
 import com.techchallenge.eletrodomesticos.repository.PessoaRepository;
+import com.techchallenge.eletrodomesticos.specifications.EletrodomesticoFilterApplier;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +24,7 @@ public class EletrodomesticoService {
 
     private final EletrodomesticoRepository eletrodomesticoRepository;
     private final PessoaRepository pessoaRepository;
+    private final EletrodomesticoFilterApplier filterApplier;
 
     @Transactional
     public EletrodomesticoResponse save(EletrodomesticoRequest request) {
@@ -36,10 +36,11 @@ public class EletrodomesticoService {
         return convertToResponse(eletrodomestico);
     }
 
-    public List<EletrodomesticoResponse> findAll() {
-        return eletrodomesticoRepository.findAll()
+    public List<EletrodomesticoResponse> findAll(EletrodomesticoFilters filters) {
+        return eletrodomesticoRepository
+                .findAll(filterApplier.apply(filters))
                 .stream()
-                .map(this::convertToResponse)
+                .map(EletrodomesticoResponse::of)
                 .toList();
     }
 

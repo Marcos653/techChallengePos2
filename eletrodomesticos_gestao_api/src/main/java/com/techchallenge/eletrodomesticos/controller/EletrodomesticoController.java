@@ -1,5 +1,6 @@
 package com.techchallenge.eletrodomesticos.controller;
 
+import com.techchallenge.eletrodomesticos.controller.dto.EletrodomesticoFilters;
 import com.techchallenge.eletrodomesticos.controller.dto.EletrodomesticoRequest;
 import com.techchallenge.eletrodomesticos.controller.dto.EletrodomesticoResponse;
 import com.techchallenge.eletrodomesticos.services.EletrodomesticoService;
@@ -24,8 +25,8 @@ public class EletrodomesticoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<EletrodomesticoResponse>> list() {
-        return ResponseEntity.ok(service.findAll());
+    public ResponseEntity<List<EletrodomesticoResponse>> list(EletrodomesticoFilters filters) {
+        return ResponseEntity.ok(service.findAll(filters));
     }
 
     @GetMapping("/{id}")
@@ -51,11 +52,6 @@ public class EletrodomesticoController {
     public ResponseEntity<Double> getConsumo(@PathVariable Long id) {
         var consumo = service.getConsumoEnergetico(id);
         return ResponseEntity.ok(consumo);
-    }
-
-    @GetMapping("/usuario/{id}")
-    public ResponseEntity<List<EletrodomesticoResponse>> getByUsuario(@PathVariable Long id) {
-        return ResponseEntity.ok(service.findByPessoaId(id));
     }
 }
 
