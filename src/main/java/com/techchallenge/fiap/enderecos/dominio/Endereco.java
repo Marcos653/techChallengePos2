@@ -1,5 +1,6 @@
 package com.techchallenge.fiap.enderecos.dominio;
 
+import com.techchallenge.fiap.eletrodomesticos.dominio.Eletrodomestico;
 import com.techchallenge.fiap.enderecos.controller.dto.EnderecoRequest;
 import com.techchallenge.fiap.pessoas.dominio.Pessoa;
 import jakarta.persistence.*;
@@ -7,6 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -18,7 +22,7 @@ public class Endereco {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idEndereco;
 
     @Column(name = "rua")
     private String rua;
@@ -35,9 +39,8 @@ public class Endereco {
     @Column(name = "estado")
     private String estado;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pessoa_id")
-    private Pessoa pessoa;
+    @OneToOne(mappedBy = "endereco")
+    private Casa casa;
 
     public static Endereco of(EnderecoRequest request) {
         var endereco = new Endereco();

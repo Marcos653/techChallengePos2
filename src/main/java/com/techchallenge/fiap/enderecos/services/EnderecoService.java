@@ -23,13 +23,13 @@ public class EnderecoService {
 
     private final EnderecoRepository repository;
     private final EnderecoFilterApplier filterApplier;
-    private final PessoaService pessoaService;
+    private final CasaService casaService;
 
     @Transactional
     public EnderecoResponse save(EnderecoRequest request) {
         var endereco = Endereco.of(request);
 
-        endereco.setPessoa(pessoaService.findPessoaById(request.getPessoaId()));
+        endereco.setCasa(casaService.findCasaById(request.getCasa()));
         repository.save(endereco);
 
         return convertToResponse(endereco);
@@ -59,7 +59,7 @@ public class EnderecoService {
 
     @Transactional
     public String deleteById(Long id) {
-        repository.deleteById(findEnderecoById(id).getId());
+        repository.deleteById(findEnderecoById(id).getIdEndereco());
         return "Endereço de ID " + id + " foi deletado com sucesso.";
     }
 
@@ -70,7 +70,7 @@ public class EnderecoService {
 
     private void updateEnderecoFromRequest(EnderecoRequest request, Endereco endereco) {
         copyProperties(request, endereco, "id");
-        endereco.setPessoa(pessoaService.findPessoaById(request.getPessoaId()));
+        endereco.setCasa(casaService.findCasaById(request.getCasa()));
     }
 
     private EnderecoResponse convertToResponse(Endereco endereco) {

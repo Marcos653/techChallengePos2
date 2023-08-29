@@ -1,6 +1,8 @@
 package com.techchallenge.fiap.eletrodomesticos.dominio;
 
 import com.techchallenge.fiap.eletrodomesticos.controller.dto.EletrodomesticoRequest;
+import com.techchallenge.fiap.enderecos.dominio.Casa;
+import com.techchallenge.fiap.enderecos.dominio.Endereco;
 import com.techchallenge.fiap.pessoas.dominio.Pessoa;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -41,8 +43,9 @@ public class Eletrodomestico {
     private Double tempoDeUso;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pessoa_id")
-    private Pessoa pessoa;
+    @JoinColumn(name = "idCasa")
+    private Casa casa;
+
 
     public static Eletrodomestico of(EletrodomesticoRequest request) {
         var response = new Eletrodomestico();

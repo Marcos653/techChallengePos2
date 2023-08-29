@@ -30,7 +30,7 @@ public class EnderecoRequest {
     @NotBlank(message = "Estado é obrigatório")
     private String estado;
 
-    @NotNull(message = "ID do usuário é obrigatório")
-    private Long pessoaId;
+    @NotNull(message = "ID da casa é obrigatório")
+    private Long casa;
 }
 

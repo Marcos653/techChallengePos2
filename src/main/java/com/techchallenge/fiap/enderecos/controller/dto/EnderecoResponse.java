@@ -20,12 +20,12 @@ public class EnderecoResponse {
     private String bairro;
     private String cidade;
     private String estado;
-    private Long pessoaId;
+    private Long casa;
 
     public static EnderecoResponse of(Endereco request) {
         var response = new EnderecoResponse();
         copyProperties(request, response);
-        response.setPessoaId(request.getPessoa().getId());
+        response.setCasa(request.getCasa().getIdCasa());
         return response;
     }
 }
