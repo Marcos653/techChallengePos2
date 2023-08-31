@@ -1,18 +1,16 @@
 package com.techchallenge.fiap.pessoas.dominio;
 
 import com.techchallenge.fiap.enderecos.dominio.Casa;
-import com.techchallenge.fiap.enderecos.dominio.Endereco;
 import com.techchallenge.fiap.pessoas.controller.dto.PessoaRequest;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
+
 
 @Data
 @AllArgsConstructor
@@ -40,10 +38,10 @@ public class Pessoa {
     @Enumerated(EnumType.STRING)
     private Sexo sexo;
 
-    @ManyToMany( cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(name = "Casa_Pessoa",
-            joinColumns = @JoinColumn(name = "id_pessoa"),
-            inverseJoinColumns = @JoinColumn(name = "id_casa"))
+            joinColumns = @JoinColumn(name = "id_pessoa", referencedColumnName = "id_pessoa"),
+            inverseJoinColumns = @JoinColumn(name = "id_casa", referencedColumnName = "id_casa"))
     private List<Casa> casas = new ArrayList<>();
 
 

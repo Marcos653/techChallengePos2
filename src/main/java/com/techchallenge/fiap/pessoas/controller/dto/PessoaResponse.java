@@ -1,8 +1,10 @@
 package com.techchallenge.fiap.pessoas.controller.dto;
 
+import com.techchallenge.fiap.enderecos.dominio.Casa;
 import com.techchallenge.fiap.pessoas.dominio.Parentesco;
 import com.techchallenge.fiap.pessoas.dominio.Pessoa;
 import com.techchallenge.fiap.pessoas.dominio.Sexo;
+import com.techchallenge.fiap.pessoas.services.PessoaService;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,7 +25,7 @@ public class PessoaResponse {
     private String nome;
     private LocalDate dataNascimento;
     private Sexo sexo;
-    private List<Pessoa> pessoas;
+    private List<Long> casas;
 
     public static PessoaResponse of(Pessoa request) {
         var response = new PessoaResponse();

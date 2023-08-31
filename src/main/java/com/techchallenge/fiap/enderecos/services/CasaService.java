@@ -7,6 +7,7 @@ import com.techchallenge.fiap.enderecos.repository.CasaRepository;
 import com.techchallenge.fiap.pessoas.dominio.GrupoFamiliar;
 import com.techchallenge.fiap.pessoas.dominio.Pessoa;
 import com.techchallenge.fiap.pessoas.dominio.RelacaoFamiliar;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,5 +37,14 @@ public class CasaService {
         casa.setEndereco(endereco);
         casaRepository.save(casa);
     }
+
+    public void addPessoaToCasa(Long casaId, Pessoa pessoa) {
+        Casa casa = casaRepository.findById(casaId)
+                .orElseThrow(() -> new EntityNotFoundException("Casa não encontrada"));
+
+        casa.getPessoas().add(pessoa);
+        casaRepository.save(casa);
+    }
+
 
 }

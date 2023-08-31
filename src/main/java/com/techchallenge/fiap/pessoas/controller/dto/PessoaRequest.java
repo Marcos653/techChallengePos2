@@ -1,6 +1,7 @@
 package com.techchallenge.fiap.pessoas.controller.dto;
 
 
+
 import com.techchallenge.fiap.pessoas.dominio.Parentesco;
 import com.techchallenge.fiap.pessoas.dominio.Sexo;
 import jakarta.validation.constraints.NotBlank;

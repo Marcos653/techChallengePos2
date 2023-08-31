@@ -11,4 +11,6 @@ public interface CasaRepository extends JpaRepository<Casa, Long>,
 
     @Query("SELECT c FROM Casa c WHERE c.endereco.id = :idEndereco")
     Casa findByEnderecoId(@Param("idEndereco") Long idEndereco);
+
+
 }

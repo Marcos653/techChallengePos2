@@ -1,19 +1,19 @@
 package com.techchallenge.fiap.enderecos.dominio;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.techchallenge.fiap.eletrodomesticos.dominio.Eletrodomestico;
 import com.techchallenge.fiap.pessoas.dominio.Pessoa;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "casas")
 public class Casa {
@@ -27,8 +27,8 @@ public class Casa {
     @JoinColumn(name = "idEndereco")
     private Endereco endereco;
 
-    @Getter
-    @ManyToMany(mappedBy = "casas", cascade = CascadeType.PERSIST)
+
+    @ManyToMany(mappedBy = "casas", fetch = FetchType.LAZY)
     private List<Pessoa> pessoas = new ArrayList<>();
 
     @OneToMany(mappedBy = "casa")

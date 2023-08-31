@@ -46,9 +46,7 @@ public class PessoaService {
         List<Long> casaIds = request.getCasaIds();
         if (casaIds != null && !casaIds.isEmpty()) {
             for (Long casaId : casaIds) {
-                Casa casa = casaService.findCasaById(casaId);
-                casa.getPessoas().add(pessoa);
-                casaRepository.save(casa);
+                casaService.addPessoaToCasa(casaId, pessoa);
             }
         }
 
