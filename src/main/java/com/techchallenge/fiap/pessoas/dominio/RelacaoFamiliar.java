@@ -13,7 +13,7 @@ public class RelacaoFamiliar {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
 

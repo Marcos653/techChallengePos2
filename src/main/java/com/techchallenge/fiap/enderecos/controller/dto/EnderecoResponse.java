@@ -26,6 +26,7 @@ public class EnderecoResponse {
         var response = new EnderecoResponse();
         copyProperties(request, response);
         response.setCasa(request.getCasa().getIdCasa());
+        response.setId(request.getIdEndereco());
         return response;
     }
 }

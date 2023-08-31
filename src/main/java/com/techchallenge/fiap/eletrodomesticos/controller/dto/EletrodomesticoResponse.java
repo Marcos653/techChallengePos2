@@ -2,6 +2,7 @@ package com.techchallenge.fiap.eletrodomesticos.controller.dto;
 
 import com.techchallenge.fiap.eletrodomesticos.dominio.Eletrodomestico;
 import com.techchallenge.fiap.eletrodomesticos.dominio.Tensao;
+import com.techchallenge.fiap.enderecos.controller.dto.CasaResponse;
 import com.techchallenge.fiap.pessoas.controller.dto.PessoaResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,11 +24,11 @@ public class EletrodomesticoResponse {
     private Tensao tensao;
     private Integer potencia;
     private Double tempoDeUso;
-    private PessoaResponse pessoa;
+    private CasaResponse casa;
 
     public static EletrodomesticoResponse of(Eletrodomestico request) {
         var response = new EletrodomesticoResponse();
-        response.setPessoa(PessoaResponse.of(request.getPessoa()));
+        //response.setCasa(CasaResponse.of(request.getCasa()));
         copyProperties(request, response);
         return response;
     }

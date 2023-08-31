@@ -14,12 +14,14 @@ public class GrupoFamiliarService {
     private final GrupoFamiliarRepository repository;
 
     public GrupoFamiliar verifyOrCreateGroup(Pessoa pessoa) {
-        var grupo = repository.findById(pessoa.getId()).get();
-        if (grupo == null) {
-            grupo = new GrupoFamiliar();
-            repository.save(grupo);
-        }
+        var grupoOptional = repository.findById(pessoa.getId());
 
-        return grupo;
+        if (grupoOptional.isPresent()) {
+            return grupoOptional.get();
+        } else {
+            var grupo = new GrupoFamiliar();
+            repository.save(grupo);
+            return grupo;
+        }
     }
 }

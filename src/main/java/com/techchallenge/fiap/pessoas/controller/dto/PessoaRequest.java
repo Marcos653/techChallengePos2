@@ -1,17 +1,17 @@
 package com.techchallenge.fiap.pessoas.controller.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.techchallenge.fiap.enderecos.dominio.Casa;
 import com.techchallenge.fiap.pessoas.dominio.Parentesco;
 import com.techchallenge.fiap.pessoas.dominio.Sexo;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Builder
@@ -31,7 +31,6 @@ public class PessoaRequest {
     @NotNull(message = "Parentesco é obrigatório")
     private Parentesco parentesco;
 
-    @NotNull(message = "Idade é obrigatório")
-    @PositiveOrZero(message = "Idade não pode ser negativo")
-    private Integer idade;
+    private List<Casa> casas;
+
 }

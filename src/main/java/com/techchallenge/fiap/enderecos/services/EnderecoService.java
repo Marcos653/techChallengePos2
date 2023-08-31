@@ -4,9 +4,15 @@ import com.techchallenge.fiap.common.exception.NotFoundException;
 import com.techchallenge.fiap.enderecos.controller.dto.EnderecoFilters;
 import com.techchallenge.fiap.enderecos.controller.dto.EnderecoRequest;
 import com.techchallenge.fiap.enderecos.controller.dto.EnderecoResponse;
+import com.techchallenge.fiap.enderecos.dominio.Casa;
 import com.techchallenge.fiap.enderecos.dominio.Endereco;
+import com.techchallenge.fiap.enderecos.repository.CasaRepository;
 import com.techchallenge.fiap.enderecos.repository.EnderecoRepository;
 import com.techchallenge.fiap.enderecos.specifications.EnderecoFilterApplier;
+import com.techchallenge.fiap.pessoas.controller.dto.PessoaRequest;
+import com.techchallenge.fiap.pessoas.controller.dto.PessoaResponse;
+import com.techchallenge.fiap.pessoas.dominio.Pessoa;
+import com.techchallenge.fiap.pessoas.dominio.Usuario;
 import com.techchallenge.fiap.pessoas.services.PessoaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,14 +31,18 @@ public class EnderecoService {
     private final EnderecoFilterApplier filterApplier;
     private final CasaService casaService;
 
+
     @Transactional
     public EnderecoResponse save(EnderecoRequest request) {
         var endereco = Endereco.of(request);
-
-        endereco.setCasa(casaService.findCasaById(request.getCasa()));
         repository.save(endereco);
 
+        casaService.establishRelationships(endereco);
+        Casa casa = casaService.findCasaByEnderecoId(endereco.getIdEndereco());
+        establishRelationships(casa,endereco);
+
         return convertToResponse(endereco);
+
     }
 
     public List<EnderecoResponse> findAll(EnderecoFilters filters) {
@@ -59,7 +69,10 @@ public class EnderecoService {
 
     @Transactional
     public String deleteById(Long id) {
-        repository.deleteById(findEnderecoById(id).getIdEndereco());
+        Endereco endereco = findEnderecoById(id);
+        if (endereco != null) {
+            repository.delete(endereco);
+        }
         return "Endereço de ID " + id + " foi deletado com sucesso.";
     }
 
@@ -71,6 +84,11 @@ public class EnderecoService {
     private void updateEnderecoFromRequest(EnderecoRequest request, Endereco endereco) {
         copyProperties(request, endereco, "id");
         endereco.setCasa(casaService.findCasaById(request.getCasa()));
+    }
+
+    public void establishRelationships(Casa casa, Endereco endereco) {
+        endereco.setCasa(casa);
+        repository.save(endereco);
     }
 
     private EnderecoResponse convertToResponse(Endereco endereco) {

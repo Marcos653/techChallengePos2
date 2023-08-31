@@ -21,7 +21,7 @@ public class Casa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCasa;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idEndereco")
     private Endereco endereco;
 

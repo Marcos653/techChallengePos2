@@ -16,11 +16,7 @@ public class CasaController {
     @Autowired
     private CasaService casaService;
 
-    @PostMapping
-    public ResponseEntity<Casa> criarCasa(@RequestBody Casa casa) {
-        Casa novaCasa = casaService.criarCasa(casa);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novaCasa);
-    }
+
 
     @GetMapping
     public ResponseEntity<List<Casa>> listarCasas() {

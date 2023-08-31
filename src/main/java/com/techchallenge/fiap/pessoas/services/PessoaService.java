@@ -64,7 +64,10 @@ public class PessoaService {
 
     @Transactional
     public void deleteById(Long id) {
-        repository.deleteById(findPessoaById(id).getId());
+        Pessoa pessoa = findPessoaById(id);
+        if (pessoa != null) {
+            repository.delete(pessoa);
+        }
     }
 
     private void updatePessoaFromRequest(PessoaRequest request, Pessoa pessoa) {

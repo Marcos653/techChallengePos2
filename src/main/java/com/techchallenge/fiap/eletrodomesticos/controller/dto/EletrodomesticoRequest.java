@@ -36,6 +36,6 @@ public class EletrodomesticoRequest {
     @PositiveOrZero(message = "Tempo de Uso não pode ser negativo")
     private Double tempoDeUso;
 
-    @NotNull(message = "Pessoa id é obrigatório")
-    private Long pessoaId;
+    @NotNull(message = "Casa id é obrigatório")
+    private Long casaId;
 }

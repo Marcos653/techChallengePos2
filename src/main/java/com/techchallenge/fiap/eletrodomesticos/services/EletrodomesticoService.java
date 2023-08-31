@@ -7,7 +7,7 @@ import com.techchallenge.fiap.common.exception.NotFoundException;
 import com.techchallenge.fiap.eletrodomesticos.dominio.Eletrodomestico;
 import com.techchallenge.fiap.eletrodomesticos.repository.EletrodomesticoRepository;
 import com.techchallenge.fiap.eletrodomesticos.specifications.EletrodomesticoFilterApplier;
-import com.techchallenge.fiap.pessoas.services.PessoaService;
+import com.techchallenge.fiap.enderecos.services.CasaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,13 +23,13 @@ public class EletrodomesticoService {
 
     private final EletrodomesticoRepository repository;
     private final EletrodomesticoFilterApplier filterApplier;
-    private final PessoaService pessoaService;
+    private final CasaService casaService;
 
     @Transactional
     public EletrodomesticoResponse save(EletrodomesticoRequest request) {
         var eletrodomestico = Eletrodomestico.of(request);
 
-        eletrodomestico.setPessoa(pessoaService.findPessoaById(request.getPessoaId()));
+        eletrodomestico.setCasa(casaService.findCasaById(request.getCasaId()));
         repository.save(eletrodomestico);
 
         return convertToResponse(eletrodomestico);
@@ -73,7 +73,7 @@ public class EletrodomesticoService {
 
     private void updateEletrodomesticoFromRequest(EletrodomesticoRequest request, Eletrodomestico eletrodomestico) {
         copyProperties(request, eletrodomestico, "id");
-        eletrodomestico.setPessoa(pessoaService.findPessoaById(request.getPessoaId()));
+        eletrodomestico.setCasa(casaService.findCasaById(request.getCasaId()));
     }
 
     private EletrodomesticoResponse convertToResponse(Eletrodomestico eletrodomestico) {
