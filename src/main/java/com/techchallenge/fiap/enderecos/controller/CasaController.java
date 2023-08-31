@@ -16,8 +16,6 @@ public class CasaController {
     @Autowired
     private CasaService casaService;
 
-
-
     @GetMapping
     public ResponseEntity<List<Casa>> listarCasas() {
         List<Casa> casas = casaService.listarCasas();

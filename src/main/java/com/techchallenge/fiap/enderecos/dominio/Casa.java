@@ -5,6 +5,7 @@ import com.techchallenge.fiap.pessoas.dominio.Pessoa;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
@@ -19,20 +20,21 @@ public class Casa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_casa")
     private Long idCasa;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idEndereco")
     private Endereco endereco;
 
-    @ManyToMany
-    @JoinTable(name = "Casa_Pessoa",
-            joinColumns = @JoinColumn(name = "idCasa"),
-            inverseJoinColumns = @JoinColumn(name = "idPessoa"))
+    @Getter
+    @ManyToMany(mappedBy = "casas", cascade = CascadeType.PERSIST)
     private List<Pessoa> pessoas = new ArrayList<>();
 
     @OneToMany(mappedBy = "casa")
     private List<Eletrodomestico> eletrodomesticos = new ArrayList<>();
 
-
+    public void setPessoas(List<Pessoa> pessoas) {
+        this.pessoas = pessoas;
+    }
 }

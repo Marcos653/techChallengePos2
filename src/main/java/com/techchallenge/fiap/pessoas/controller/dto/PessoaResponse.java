@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
 
@@ -22,8 +23,7 @@ public class PessoaResponse {
     private String nome;
     private LocalDate dataNascimento;
     private Sexo sexo;
-    private Parentesco parentesco;
-    private Integer idade;
+    private List<Pessoa> pessoas;
 
     public static PessoaResponse of(Pessoa request) {
         var response = new PessoaResponse();

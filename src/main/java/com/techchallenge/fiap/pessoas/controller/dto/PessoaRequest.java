@@ -1,6 +1,6 @@
 package com.techchallenge.fiap.pessoas.controller.dto;
 
-import com.techchallenge.fiap.enderecos.dominio.Casa;
+
 import com.techchallenge.fiap.pessoas.dominio.Parentesco;
 import com.techchallenge.fiap.pessoas.dominio.Sexo;
 import jakarta.validation.constraints.NotBlank;
@@ -11,7 +11,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+
 
 @Data
 @Builder
@@ -31,6 +33,6 @@ public class PessoaRequest {
     @NotNull(message = "Parentesco é obrigatório")
     private Parentesco parentesco;
 
-    private List<Casa> casas;
+    private List<Long> casaIds = new ArrayList<>();
 
 }

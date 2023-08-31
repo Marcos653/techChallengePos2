@@ -22,7 +22,7 @@ import static org.springframework.beans.BeanUtils.copyProperties;
 public class Pessoa {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id_pessoa")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -40,7 +40,10 @@ public class Pessoa {
     @Enumerated(EnumType.STRING)
     private Sexo sexo;
 
-    @ManyToMany(mappedBy = "pessoas")
+    @ManyToMany( cascade = CascadeType.PERSIST)
+    @JoinTable(name = "Casa_Pessoa",
+            joinColumns = @JoinColumn(name = "id_pessoa"),
+            inverseJoinColumns = @JoinColumn(name = "id_casa"))
     private List<Casa> casas = new ArrayList<>();
 
 
