@@ -50,12 +50,16 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
 ### Endpoint: http://localhost:8080/pessoas
 
 #### GET - Listar todas as Pessoas
+- **URL:** `/pessoas`
+- **Método:** GET
 
-- **Exemplo de Requisição:** `GET /pessoas`
 
-- **Exemplo de Resposta:**
+**Exemplo de Requisição:** `GET /pessoas`
+
+
+**Exemplo de Resposta:**
 ```json
-[
+
     {
         "id": 1,
         "nome": "Maria",
@@ -70,13 +74,19 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
         "sexo": "MASCULINO",
         "parentesco": "PAI"
     }
-]
+```
+
 
 #### GET - Buscar Pessoa por ID
-- **Exemplo de Requisição: ** GET /pessoas/1
 
-- **Exemplo de Resposta:**
-[
+- **URL:** `/pessoas/{id}`
+- **Método:** GET
+
+**Exemplo de Requisição:** `GET /pessoas/1`
+
+**Exemplo de Resposta:**
+
+```json
   {
       "id": 1,
       "nome": "Maria",
@@ -84,13 +94,17 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
       "sexo": "FEMININO",
       "parentesco": "MÃE"
   }
-]
+```
 
 #### GET - Buscar Pessoas por Parâmetros
-- **Exemplo de Requisição: ** GET /pessoas?sexo=FEMININO&parentesco=MÃE
 
-- **Exemplo de Resposta:**
-[
+- **URL:** `/pessoas/?{parametros}`
+- **Método:** GET
+
+**Exemplo de Requisição:** GET /pessoas?sexo=FEMININO&parentesco=MÃE
+
+**Exemplo de Resposta:**
+```json
     {
         "id": 1,
         "nome": "Maria",
@@ -98,13 +112,15 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
         "sexo": "FEMININO",
         "parentesco": "MÃE"
     }
-]
+```
 
 #### POST - Criar uma nova Pessoa
+- **URL:** `/pessoas
+- **Método:** POST
 
-- **Exemplo de Requisição:** `POST /pessoas`
+**Exemplo de Requisição:** `POST /pessoas`
 
-- **Corpo da Requisição:**
+**Corpo da Requisição:**
 ```json
 {
     "nome": "Ana",
@@ -112,9 +128,11 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
     "sexo": "FEMININO",
     "parentesco": "FILHA"
 }
+```
 
-- **Exemplo de Resposta:**
-[
+**Exemplo de Resposta:**
+
+```json
   {
       "id": 3,
       "nome": "Ana",
@@ -122,24 +140,27 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
       "sexo": "FEMININO",
       "parentesco": "FILHA"
   }
-]
+```
 
 #### PUT - Atualizar Pessoa existente
-** Exemplo de Requisição: **PUT /pessoas/2
 
-- **Corpo da Requisição:**
+- **URL:** `/pessoas/{id}
+- **Método:** PUT
+**Exemplo de Requisição:** PUT /pessoas/2
+
+**Corpo da Requisição:**
 ```json
-
 {
     "nome": "Carlos",
     "dataNascimento": "1980-03-25",
     "sexo": "MASCULINO",
     "parentesco": "PAI"
 }
+```
 
-- **Exemplo de Resposta:**
+**Exemplo de Resposta:**
 
-[
+```json
   {
       "id": 2,
       "nome": "Carlos",
@@ -147,18 +168,21 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
       "sexo": "MASCULINO",
       "parentesco": "PAI"
   }
-]
+```
 
 #### DELETE - Excluir Pessoa por ID
+- **URL:** `/pessoas/{id}`
+- **Método:** DELETE
 
-** Exemplo de Requisição: ** DELETE /pessoas/3
+**Exemplo de Requisição:** DELETE /pessoas/3
 
-- **Exemplo de Resposta:**
-[
+**Exemplo de Resposta:**
+
+```json
   {
       "message": "Pessoa excluída com sucesso"
   }
-]
+```
 
 
 ## Endereços
@@ -166,11 +190,15 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
 ### Endpoint: http://localhost:8080/enderecos
 
 #### GET - Listar todos os Endereços
-- ** Exemplo de Requisição: ** GET /enderecos
 
-- **Exemplo de Resposta:**
+- **URL:** `/enderecos`
+- **Método:** GET
 
-[
+**Exemplo de Requisição:** GET /enderecos
+
+**Exemplo de Resposta:**
+
+```json
     {
         "id": 1,
         "rua": "Rua A",
@@ -187,14 +215,18 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
         "cidade": "Cidade",
         "estado": "Estado"
     }
-]
+```
 
 #### GET - Buscar Endereço por ID
-** Exemplo de Requisição: ** GET /enderecos/1
+
+- **URL:** `/enderecos/{id}`
+- **Método:** GET
+
+**Exemplo de Requisição:** GET /enderecos/1
 
 **Exemplo de Resposta:**
 
-[
+```json
   {
       "id": 1,
       "rua": "Rua A",
@@ -203,14 +235,17 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
       "cidade": "Cidade",
       "estado": "Estado"
   }
-]
+```
 
 #### POST - Criar um novo Endereço
-** Exemplo de Requisição: ** POST /enderecos
 
-- **Corpo da Requisição:**
+- **URL:** `/enderecos`
+- **Método:** POST
+
+**Exemplo de Requisição:** POST /enderecos
+
+**Corpo da Requisição:**
 ```json
-[
   {
       "rua": "Rua C",
       "numero": 789,
@@ -218,11 +253,11 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
       "cidade": "Cidade Nova",
       "estado": "Estado Novo"
   }
-]
+```
 
 **Exemplo de Resposta:**
 
-[
+```json
   {
       "id": 3,
       "rua": "Rua C",
@@ -231,15 +266,18 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
       "cidade": "Cidade Nova",
       "estado": "Estado Novo"
   }
-]
+```
 
 #### PUT - Atualizar Endereço existente
 
-** Exemplo de Requisição: ** PUT /enderecos/2
+- **URL:** `/enderecos/{id}`
+- **Método:** PUT
+- 
+**Exemplo de Requisição:** PUT /enderecos/2
 
-- **Corpo da Requisição:**
+**Corpo da Requisição:**
+
 ```json
-[
   {
       "rua": "Rua D",
       "numero": 555,
@@ -247,11 +285,11 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
       "cidade": "Cidade Atualizada",
       "estado": "Estado Atualizado"
   }
-]
+```
 
 **Exemplo de Resposta:**
 
-[
+```json
   {
       "id": 2,
       "rua": "Rua D",
@@ -260,19 +298,22 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
       "cidade": "Cidade Atualizada",
       "estado": "Estado Atualizado"
   }
-]
+```
 
 #### DELETE - Excluir Endereço por ID
 
-** Exemplo de Requisição: **DELETE /enderecos/3
+- **URL:** `/enderecos/{id}`
+- **Método:** DELETE
+
+**Exemplo de Requisição:** DELETE /enderecos/3
 
 **Exemplo de Resposta:**
 
-[
+```json
   {
       "message": "Endereço excluído com sucesso"
   }
-]
+```
 
 
 ## Eletrodomésticos
@@ -280,11 +321,15 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
 ### Endpoint: http://localhost:8080/eletrodomesticos
 
 #### GET - Listar todos os Eletrodomésticos
-** Exemplo de Requisição: **GET /eletrodomesticos
+
+- **URL:** `/eletrodomesticos`
+- **Método:** GET
+
+**Exemplo de Requisição:** GET /eletrodomesticos
 
 **Exemplo de Resposta:**
 
-[
+```json
     {
         "id": 1,
         "nome": "Geladeira",
@@ -305,13 +350,18 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
         "tempoDeUso": 3.0,
         "casaId": 2
     }
-]
+```
 
 #### GET - Buscar Eletrodoméstico por ID
-** Exemplo de Requisição: ** GET /eletrodomesticos/1
+
+- **URL:** `/eletrodomesticos/{id}`
+- **Método:** GET
+
+**Exemplo de Requisição:** GET /eletrodomesticos/1
 
 **Exemplo de Resposta:**
-[
+
+```json
   {
       "id": 1,
       "nome": "Geladeira",
@@ -322,15 +372,18 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
       "tempoDeUso": 5.5,
       "casaId": 1
   }
-]
+```
 
 #### POST - Criar um novo Eletrodoméstico
 
-** Exemplo de Requisição: ** POST /eletrodomesticos
+- **URL:** `/eletrodomesticos`
+- **Método:** POST
 
-- **Corpo da Requisição:**
+**Exemplo de Requisição:** POST /eletrodomesticos
+
+**Corpo da Requisição:**
+
 ```json
-[
   {
       "nome": "Micro-ondas",
       "modelo": "Modelo X",
@@ -340,10 +393,11 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
       "tempoDeUso": 2.5,
       "casaId": 1
   }
-]
+```
 
 **Exemplo de Resposta:**
-[
+
+```json
   {
       "id": 3,
       "nome": "Micro-ondas",
@@ -354,16 +408,19 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
       "tempoDeUso": 2.5,
       "casaId": 1
   }
-]
+```
 
 
 #### PUT - Atualizar Eletrodoméstico existente
 
-** Exemplo de Requisição: ** PUT /eletrodomesticos/2
+- **URL:** `/eletrodomesticos/{id}`
+- **Método:** PUT
 
-- **Corpo da Requisição:**
+**Exemplo de Requisição:** PUT /eletrodomesticos/2
+
+**Corpo da Requisição:**
+
 ```json
-[
   {
       "nome": "Lavadora",
       "modelo": "Modelo Z",
@@ -373,11 +430,11 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
       "tempoDeUso": 4.0,
       "casaId": 2
   }
-]
+```
 
 **Exemplo de Resposta:**
 
-[
+```json
   {
       "id": 2,
       "nome": "Lavadora",
@@ -388,19 +445,23 @@ A API permite criar, recuperar, atualizar e deletar registros de Pessoas, Endere
       "tempoDeUso": 4.0,
       "casaId": 2
   }
-]
+```
 
 
 #### DELETE - Excluir Eletrodoméstico por ID
 
-** Exemplo de Requisição: ** DELETE /eletrodomesticos/3
+- **URL:** `/eletrodomesticos/{id}`
+- **Método:** DELETE
+
+**Exemplo de Requisição:** DELETE /eletrodomesticos/3
 
 **Exemplo de Resposta:**
-[
+
+```json
   {
       "message": "Eletrodoméstico excluído com sucesso"
   }
-]
+```
 
 
 
