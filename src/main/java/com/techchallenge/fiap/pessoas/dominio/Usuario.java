@@ -1,12 +1,10 @@
 package com.techchallenge.fiap.pessoas.dominio;
 
-import com.techchallenge.fiap.pessoas.controller.dto.PessoaRequest;
+import com.techchallenge.fiap.pessoas.controller.dto.UsuarioRequest;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
 
@@ -14,8 +12,8 @@ import static org.springframework.beans.BeanUtils.copyProperties;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "pessoas")
-public class Pessoa {
+@Table(name = "usuarios")
+public class Usuario {
 
     @Id
     @Column(name = "id")
@@ -25,19 +23,14 @@ public class Pessoa {
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "data_nascimento")
-    private LocalDate dataNascimento;
+    @Column(name = "email")
+    private String email;
 
-    @Column(name = "sexo")
-    @Enumerated(EnumType.STRING)
-    private Sexo sexo;
+    @Column(name = "senha")
+    private String senha;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
-
-    public static Pessoa of(PessoaRequest request) {
-        var response = new Pessoa();
+    public static Usuario of(UsuarioRequest request) {
+        var response = new Usuario();
         copyProperties(request, response);
         return response;
     }

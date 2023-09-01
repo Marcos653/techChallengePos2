@@ -1,6 +1,5 @@
 package com.techchallenge.fiap.pessoas.controller.dto;
 
-import com.techchallenge.fiap.pessoas.dominio.Parentesco;
 import com.techchallenge.fiap.pessoas.dominio.Pessoa;
 import com.techchallenge.fiap.pessoas.dominio.Sexo;
 import lombok.AllArgsConstructor;
@@ -22,12 +21,12 @@ public class PessoaResponse {
     private String nome;
     private LocalDate dataNascimento;
     private Sexo sexo;
-    private Parentesco parentesco;
-    private Integer idade;
+    private Long usuarioId;
 
     public static PessoaResponse of(Pessoa request) {
         var response = new PessoaResponse();
         copyProperties(request, response);
+        response.setUsuarioId(request.getUsuario().getId());
         return response;
     }
 }

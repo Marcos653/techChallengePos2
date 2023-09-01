@@ -11,13 +11,6 @@ public enum Parentesco {
     FILHA("Filha"),
     IRMAO("Irmão"),
     IRMA("Irmã"),
-    AVOS("Avós"),
-    TIO("Tio"),
-    TIA("Tia"),
-    PRIMO("Primo"),
-    PRIMA("Prima"),
-    SOBRINHO("Sobrinho"),
-    SOBRINHA("Sobrinha"),
     OUTRO("Outro");
 
     private final String descricao;
