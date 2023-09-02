@@ -22,12 +22,9 @@ public class EletrodomesticoResponse {
     private String marca;
     private Tensao tensao;
     private Integer potencia;
-    private Double tempoDeUso;
-    private PessoaResponse pessoa;
 
     public static EletrodomesticoResponse of(Eletrodomestico request) {
         var response = new EletrodomesticoResponse();
-        response.setPessoa(PessoaResponse.of(request.getPessoa()));
         copyProperties(request, response);
         return response;
     }

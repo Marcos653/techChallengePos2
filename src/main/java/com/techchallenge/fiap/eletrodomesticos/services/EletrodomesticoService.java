@@ -29,7 +29,6 @@ public class EletrodomesticoService {
     public EletrodomesticoResponse save(EletrodomesticoRequest request) {
         var eletrodomestico = Eletrodomestico.of(request);
 
-        eletrodomestico.setPessoa(pessoaService.findPessoaById(request.getPessoaId()));
         repository.save(eletrodomestico);
 
         return convertToResponse(eletrodomestico);
@@ -62,18 +61,13 @@ public class EletrodomesticoService {
         repository.deleteById(findEletrodomesticoById(id).getId());
     }
 
-    public Double getConsumoEnergetico(Long id) {
-        return findEletrodomesticoById(id).getConsumoEnergetico();
-    }
-
-    private Eletrodomestico findEletrodomesticoById(Long id) {
+    public Eletrodomestico findEletrodomesticoById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Eletrodomestico não encontrado com ID: " + id));
     }
 
     private void updateEletrodomesticoFromRequest(EletrodomesticoRequest request, Eletrodomestico eletrodomestico) {
         copyProperties(request, eletrodomestico, "id");
-        eletrodomestico.setPessoa(pessoaService.findPessoaById(request.getPessoaId()));
     }
 
     private EletrodomesticoResponse convertToResponse(Eletrodomestico eletrodomestico) {

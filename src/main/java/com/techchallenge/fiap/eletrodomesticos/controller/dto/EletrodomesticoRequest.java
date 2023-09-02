@@ -31,11 +31,4 @@ public class EletrodomesticoRequest {
     @NotNull(message = "Potência é obrigatório")
     @Min(value = 1, message = "Potência deve ser positiva")
     private Integer potencia;
-
-    @NotNull(message = "Tempo de Uso é obrigatório")
-    @PositiveOrZero(message = "Tempo de Uso não pode ser negativo")
-    private Double tempoDeUso;
-
-    @NotNull(message = "Pessoa id é obrigatório")
-    private Long pessoaId;
 }

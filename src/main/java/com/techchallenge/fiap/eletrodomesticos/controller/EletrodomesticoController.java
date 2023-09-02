@@ -47,10 +47,4 @@ public class EletrodomesticoController {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-
-    @GetMapping("/{id}/consumo")
-    public ResponseEntity<Double> getConsumo(@PathVariable Long id) {
-        var consumo = service.getConsumoEnergetico(id);
-        return ResponseEntity.ok(consumo);
-    }
 }

@@ -14,8 +14,6 @@ public class EletrodomesticoFilterApplier {
                 .and(EletrodomesticoSpecifications.byModelo(filtro.getModelo()))
                 .and(EletrodomesticoSpecifications.byMarca(filtro.getMarca()))
                 .and(EletrodomesticoSpecifications.byTensao(filtro.getTensao()))
-                .and(EletrodomesticoSpecifications.byPotencia(filtro.getPotencia()))
-                .and(EletrodomesticoSpecifications.byTempoDeUso(filtro.getTempoDeUso()))
-                .and(EletrodomesticoSpecifications.byPessoaId(filtro.getPessoaId()));
+                .and(EletrodomesticoSpecifications.byPotencia(filtro.getPotencia()));
     }
 }

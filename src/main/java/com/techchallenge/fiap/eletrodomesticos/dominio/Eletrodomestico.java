@@ -1,7 +1,6 @@
 package com.techchallenge.fiap.eletrodomesticos.dominio;
 
 import com.techchallenge.fiap.eletrodomesticos.controller.dto.EletrodomesticoRequest;
-import com.techchallenge.fiap.pessoas.dominio.Pessoa;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,20 +36,9 @@ public class Eletrodomestico {
     @Column(name = "potencia")
     private Integer potencia;
 
-    @Column(name = "tempo_de_uso")
-    private Double tempoDeUso;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pessoa_id")
-    private Pessoa pessoa;
-
     public static Eletrodomestico of(EletrodomesticoRequest request) {
         var response = new Eletrodomestico();
         copyProperties(request, response);
         return response;
-    }
-
-    public Double getConsumoEnergetico() {
-        return this.potencia * this.tempoDeUso;
     }
 }

@@ -17,6 +17,4 @@ public class EletrodomesticoFilters {
     private String marca;
     private Tensao tensao;
     private Integer potencia;
-    private Double tempoDeUso;
-    private Long pessoaId;
 }
