@@ -28,9 +28,4 @@ public class PessoaSpecifications {
         return (root, query, criteriaBuilder)
                 -> parentesco == null ? null : criteriaBuilder.equal(root.get("parentesco"), parentesco);
     }
-
-    public static Specification<Pessoa> byIdade(Integer idade) {
-        return (root, query, criteriaBuilder)
-                -> idade == null ? null : criteriaBuilder.equal(root.get("idade"), idade);
-    }
 }

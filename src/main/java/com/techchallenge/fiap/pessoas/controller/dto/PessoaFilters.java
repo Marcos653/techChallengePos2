@@ -16,5 +16,4 @@ public class PessoaFilters {
     private LocalDate dataNascimento;
     private Sexo sexo;
     private Parentesco parentesco;
-    private Integer idade;
 }

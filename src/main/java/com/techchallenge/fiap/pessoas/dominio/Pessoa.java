@@ -42,16 +42,6 @@ public class Pessoa {
     @ManyToMany(mappedBy = "pessoas", fetch = FetchType.LAZY)
     private List<Casa> casas = new ArrayList<>();
 
-    public void addCasa(Casa casa) {
-        casas.add(casa);
-        casa.getPessoas().add(this);
-    }
-
-    public void removeCasa(Casa casa) {
-        casas.remove(casa);
-        casa.getPessoas().remove(this);
-    }
-
     public static Pessoa of(PessoaRequest request) {
         var response = new Pessoa();
         copyProperties(request, response);

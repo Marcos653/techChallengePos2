@@ -13,7 +13,6 @@ public class PessoaFilterApplier {
                 .where(PessoaSpecifications.byNome(filtro.getNome()))
                 .and(PessoaSpecifications.byDataNascimento(filtro.getDataNascimento()))
                 .and(PessoaSpecifications.bySexo(filtro.getSexo()))
-                .and(PessoaSpecifications.byParentesco(filtro.getParentesco()))
-                .and(PessoaSpecifications.byIdade(filtro.getIdade()));
+                .and(PessoaSpecifications.byParentesco(filtro.getParentesco()));
     }
 }
