@@ -1,8 +1,6 @@
 package com.techchallenge.fiap.pessoas.controller;
 
-import com.techchallenge.fiap.pessoas.controller.dto.PessoaFilters;
-import com.techchallenge.fiap.pessoas.controller.dto.PessoaRequest;
-import com.techchallenge.fiap.pessoas.controller.dto.PessoaResponse;
+import com.techchallenge.fiap.pessoas.controller.dto.*;
 import com.techchallenge.fiap.pessoas.services.PessoaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

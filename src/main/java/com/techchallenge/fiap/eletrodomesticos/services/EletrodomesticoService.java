@@ -1,8 +1,6 @@
 package com.techchallenge.fiap.eletrodomesticos.services;
 
-import com.techchallenge.fiap.eletrodomesticos.controller.dto.EletrodomesticoFilters;
-import com.techchallenge.fiap.eletrodomesticos.controller.dto.EletrodomesticoRequest;
-import com.techchallenge.fiap.eletrodomesticos.controller.dto.EletrodomesticoResponse;
+import com.techchallenge.fiap.eletrodomesticos.controller.dto.*;
 import com.techchallenge.fiap.common.exception.NotFoundException;
 import com.techchallenge.fiap.eletrodomesticos.dominio.Eletrodomestico;
 import com.techchallenge.fiap.eletrodomesticos.repository.EletrodomesticoRepository;

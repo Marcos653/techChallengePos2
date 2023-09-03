@@ -1,9 +1,7 @@
 package com.techchallenge.fiap.enderecos.services;
 
 import com.techchallenge.fiap.common.exception.NotFoundException;
-import com.techchallenge.fiap.enderecos.controller.dto.EnderecoFilters;
-import com.techchallenge.fiap.enderecos.controller.dto.EnderecoRequest;
-import com.techchallenge.fiap.enderecos.controller.dto.EnderecoResponse;
+import com.techchallenge.fiap.enderecos.controller.dto.*;
 import com.techchallenge.fiap.enderecos.dominio.Endereco;
 import com.techchallenge.fiap.enderecos.repository.EnderecoRepository;
 import com.techchallenge.fiap.enderecos.specifications.EnderecoFilterApplier;

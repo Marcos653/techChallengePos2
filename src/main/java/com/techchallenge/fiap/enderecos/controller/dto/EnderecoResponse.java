@@ -1,10 +1,7 @@
 package com.techchallenge.fiap.enderecos.controller.dto;
 
 import com.techchallenge.fiap.enderecos.dominio.Endereco;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
 

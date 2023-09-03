@@ -2,11 +2,13 @@ package com.techchallenge.fiap.pessoas.dominio;
 
 import com.techchallenge.fiap.pessoas.controller.dto.RelacaoFamiliarRequest;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "relacao_familiares")
 public class RelacaoFamiliar {

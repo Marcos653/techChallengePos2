@@ -2,9 +2,7 @@ package com.techchallenge.fiap.pessoas.dominio;
 
 import com.techchallenge.fiap.pessoas.controller.dto.UsuarioRequest;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
 

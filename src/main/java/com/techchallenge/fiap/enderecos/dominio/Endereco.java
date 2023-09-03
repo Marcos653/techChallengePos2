@@ -1,12 +1,10 @@
 package com.techchallenge.fiap.enderecos.dominio;
 
 import com.techchallenge.fiap.enderecos.controller.dto.EnderecoRequest;
-import com.techchallenge.fiap.pessoas.dominio.Pessoa;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.BeanUtils;
+import lombok.*;
+
+import static org.springframework.beans.BeanUtils.copyProperties;
 
 @Data
 @AllArgsConstructor
@@ -37,7 +35,7 @@ public class Endereco {
 
     public static Endereco of(EnderecoRequest request) {
         var endereco = new Endereco();
-        BeanUtils.copyProperties(request, endereco);
+        copyProperties(request, endereco);
         return endereco;
     }
 }

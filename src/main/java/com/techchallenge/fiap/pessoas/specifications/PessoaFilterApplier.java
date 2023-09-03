@@ -17,4 +17,3 @@ public class PessoaFilterApplier {
                 .and(PessoaSpecifications.byIdade(filtro.getIdade()));
     }
 }
-

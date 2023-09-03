@@ -2,10 +2,7 @@ package com.techchallenge.fiap.eletrodomesticos.controller.dto;
 
 import com.techchallenge.fiap.eletrodomesticos.dominio.PessoaEletrodomestico;
 import com.techchallenge.fiap.pessoas.controller.dto.PessoaResponse;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
 

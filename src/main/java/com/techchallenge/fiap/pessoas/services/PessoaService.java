@@ -1,9 +1,7 @@
 package com.techchallenge.fiap.pessoas.services;
 
 import com.techchallenge.fiap.common.exception.NotFoundException;
-import com.techchallenge.fiap.pessoas.controller.dto.PessoaFilters;
-import com.techchallenge.fiap.pessoas.controller.dto.PessoaRequest;
-import com.techchallenge.fiap.pessoas.controller.dto.PessoaResponse;
+import com.techchallenge.fiap.pessoas.controller.dto.*;
 import com.techchallenge.fiap.pessoas.dominio.Pessoa;
 import com.techchallenge.fiap.pessoas.repository.PessoaRepository;
 import com.techchallenge.fiap.pessoas.specifications.PessoaFilterApplier;

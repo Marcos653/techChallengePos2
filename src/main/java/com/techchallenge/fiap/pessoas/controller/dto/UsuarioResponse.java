@@ -1,10 +1,7 @@
 package com.techchallenge.fiap.pessoas.controller.dto;
 
 import com.techchallenge.fiap.pessoas.dominio.Usuario;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
 

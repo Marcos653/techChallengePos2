@@ -12,8 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-import static org.springframework.beans.BeanUtils.copyProperties;
-
 @Service
 @RequiredArgsConstructor
 public class RelacaoFamiliarService {

@@ -3,10 +3,7 @@ package com.techchallenge.fiap.enderecos.controller.dto;
 import com.techchallenge.fiap.eletrodomesticos.controller.dto.EletrodomesticoResponse;
 import com.techchallenge.fiap.enderecos.dominio.Casa;
 import com.techchallenge.fiap.pessoas.controller.dto.PessoaResponse;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 

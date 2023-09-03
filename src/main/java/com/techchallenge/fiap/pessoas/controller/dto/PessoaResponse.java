@@ -2,14 +2,10 @@ package com.techchallenge.fiap.pessoas.controller.dto;
 
 import com.techchallenge.fiap.pessoas.dominio.Pessoa;
 import com.techchallenge.fiap.pessoas.dominio.Sexo;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
 

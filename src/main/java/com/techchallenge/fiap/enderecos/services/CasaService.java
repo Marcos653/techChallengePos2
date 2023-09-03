@@ -1,13 +1,11 @@
 package com.techchallenge.fiap.enderecos.services;
 
 import com.techchallenge.fiap.common.exception.NotFoundException;
-import com.techchallenge.fiap.eletrodomesticos.dominio.Eletrodomestico;
 import com.techchallenge.fiap.eletrodomesticos.services.EletrodomesticoService;
 import com.techchallenge.fiap.enderecos.controller.dto.CasaRequest;
 import com.techchallenge.fiap.enderecos.controller.dto.CasaResponse;
 import com.techchallenge.fiap.enderecos.dominio.Casa;
 import com.techchallenge.fiap.enderecos.repository.CasaRepository;
-import com.techchallenge.fiap.pessoas.dominio.Pessoa;
 import com.techchallenge.fiap.pessoas.services.PessoaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -99,9 +97,9 @@ public class CasaService {
         ofNullable(newPessoaIds)
                 .ifPresent(pessoaIds
                         -> pessoaIds.forEach(pessoaId -> {
-            var pessoa = pessoaService.findPessoaById(pessoaId);
-            casa.addPessoa(pessoa);
-        }));
+                    var pessoa = pessoaService.findPessoaById(pessoaId);
+                    casa.addPessoa(pessoa);
+                }));
     }
 
     private void updateEletrodomesticosInCasa(List<Long> newEletrodomesticoIds, Casa casa) {
@@ -110,9 +108,9 @@ public class CasaService {
         ofNullable(newEletrodomesticoIds)
                 .ifPresent(eletrodomesticoIds
                         -> eletrodomesticoIds.forEach(eletrodomesticoId -> {
-            var eletrodomestico = eletrodomesticoService.findEletrodomesticoById(eletrodomesticoId);
-            casa.addEletrodomestico(eletrodomestico);
-        }));
+                    var eletrodomestico = eletrodomesticoService.findEletrodomesticoById(eletrodomesticoId);
+                    casa.addEletrodomestico(eletrodomestico);
+                }));
     }
 
     private void addPessoasToCasa(List<Long> pessoaIds, Casa casa) {

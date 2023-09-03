@@ -1,8 +1,6 @@
 package com.techchallenge.fiap.enderecos.controller;
 
-import com.techchallenge.fiap.enderecos.controller.dto.EnderecoFilters;
-import com.techchallenge.fiap.enderecos.controller.dto.EnderecoRequest;
-import com.techchallenge.fiap.enderecos.controller.dto.EnderecoResponse;
+import com.techchallenge.fiap.enderecos.controller.dto.*;
 import com.techchallenge.fiap.enderecos.services.EnderecoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

@@ -3,9 +3,7 @@ package com.techchallenge.fiap.eletrodomesticos.dominio;
 import com.techchallenge.fiap.eletrodomesticos.controller.dto.EletrodomesticoRequest;
 import com.techchallenge.fiap.enderecos.dominio.Casa;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
 

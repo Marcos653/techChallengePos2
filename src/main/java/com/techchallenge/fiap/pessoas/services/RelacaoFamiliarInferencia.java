@@ -1,10 +1,7 @@
 package com.techchallenge.fiap.pessoas.services;
 
 import com.techchallenge.fiap.pessoas.controller.dto.RelacaoFamiliarRequest;
-import com.techchallenge.fiap.pessoas.dominio.Parentesco;
-import com.techchallenge.fiap.pessoas.dominio.Pessoa;
-import com.techchallenge.fiap.pessoas.dominio.RelacaoFamiliar;
-import com.techchallenge.fiap.pessoas.dominio.Sexo;
+import com.techchallenge.fiap.pessoas.dominio.*;
 import com.techchallenge.fiap.pessoas.repository.RelacaoFamiliarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
