@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
 
@@ -28,5 +30,12 @@ public class PessoaResponse {
         copyProperties(request, response);
         response.setUsuarioId(request.getUsuario().getId());
         return response;
+    }
+
+    public static List<PessoaResponse> of(List<Pessoa> pessoas) {
+        return pessoas
+                .stream()
+                .map(PessoaResponse::of)
+                .toList();
     }
 }

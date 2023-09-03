@@ -35,10 +35,6 @@ public class Endereco {
     @Column(name = "estado")
     private String estado;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pessoa_id")
-    private Pessoa pessoa;
-
     public static Endereco of(EnderecoRequest request) {
         var endereco = new Endereco();
         BeanUtils.copyProperties(request, endereco);

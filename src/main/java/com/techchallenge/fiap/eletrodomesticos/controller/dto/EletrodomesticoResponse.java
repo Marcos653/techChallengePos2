@@ -2,11 +2,12 @@ package com.techchallenge.fiap.eletrodomesticos.controller.dto;
 
 import com.techchallenge.fiap.eletrodomesticos.dominio.Eletrodomestico;
 import com.techchallenge.fiap.eletrodomesticos.dominio.Tensao;
-import com.techchallenge.fiap.pessoas.controller.dto.PessoaResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
 
@@ -27,5 +28,12 @@ public class EletrodomesticoResponse {
         var response = new EletrodomesticoResponse();
         copyProperties(request, response);
         return response;
+    }
+
+    public static List<EletrodomesticoResponse> of(List<Eletrodomestico> eletrodomesticos) {
+        return eletrodomesticos
+                .stream()
+                .map(EletrodomesticoResponse::of)
+                .toList();
     }
 }

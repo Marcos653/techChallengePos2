@@ -29,9 +29,4 @@ public class EnderecoSpecifications {
         return (root, query, criteriaBuilder)
                 -> estado == null ? null : criteriaBuilder.like(root.get("estado"), "%" + estado + "%");
     }
-
-    public static Specification<Endereco> byPessoaId(Long pessoaId) {
-        return (root, query, criteriaBuilder)
-                -> pessoaId == null ? null : criteriaBuilder.equal(root.get("pessoa").get("id"), pessoaId);
-    }
 }

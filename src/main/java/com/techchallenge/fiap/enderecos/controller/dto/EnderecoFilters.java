@@ -16,5 +16,4 @@ public class EnderecoFilters {
     private String bairro;
     private String cidade;
     private String estado;
-    private Long pessoaId;
 }

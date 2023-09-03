@@ -14,7 +14,6 @@ public class EnderecoFilterApplier {
                 .and(EnderecoSpecifications.byNumero(filtro.getNumero()))
                 .and(EnderecoSpecifications.byBairro(filtro.getBairro()))
                 .and(EnderecoSpecifications.byCidade(filtro.getCidade()))
-                .and(EnderecoSpecifications.byEstado(filtro.getEstado()))
-                .and(EnderecoSpecifications.byPessoaId(filtro.getPessoaId()));
+                .and(EnderecoSpecifications.byEstado(filtro.getEstado()));
     }
 }

@@ -7,7 +7,6 @@ import com.techchallenge.fiap.enderecos.controller.dto.EnderecoResponse;
 import com.techchallenge.fiap.enderecos.dominio.Endereco;
 import com.techchallenge.fiap.enderecos.repository.EnderecoRepository;
 import com.techchallenge.fiap.enderecos.specifications.EnderecoFilterApplier;
-import com.techchallenge.fiap.pessoas.services.PessoaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,13 +22,10 @@ public class EnderecoService {
 
     private final EnderecoRepository repository;
     private final EnderecoFilterApplier filterApplier;
-    private final PessoaService pessoaService;
 
     @Transactional
     public EnderecoResponse save(EnderecoRequest request) {
         var endereco = Endereco.of(request);
-
-        endereco.setPessoa(pessoaService.findPessoaById(request.getPessoaId()));
         repository.save(endereco);
 
         return convertToResponse(endereco);
@@ -63,14 +59,13 @@ public class EnderecoService {
         return "Endereço de ID " + id + " foi deletado com sucesso.";
     }
 
-    private Endereco findEnderecoById(Long id) {
+    public Endereco findEnderecoById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Endereco não encontrado com ID: " + id));
     }
 
     private void updateEnderecoFromRequest(EnderecoRequest request, Endereco endereco) {
         copyProperties(request, endereco, "id");
-        endereco.setPessoa(pessoaService.findPessoaById(request.getPessoaId()));
     }
 
     private EnderecoResponse convertToResponse(Endereco endereco) {
