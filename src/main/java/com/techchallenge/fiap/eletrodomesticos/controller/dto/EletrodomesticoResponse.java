@@ -23,10 +23,16 @@ public class EletrodomesticoResponse {
     private String marca;
     private Tensao tensao;
     private Integer potencia;
+    private Long casaId;
 
     public static EletrodomesticoResponse of(Eletrodomestico request) {
         var response = new EletrodomesticoResponse();
         copyProperties(request, response);
+
+        if (request.getCasa() != null) {
+            response.setCasaId(request.getCasa().getId());
+        }
+
         return response;
     }
 

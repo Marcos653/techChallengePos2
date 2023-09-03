@@ -30,4 +30,6 @@ public class EletrodomesticoRequest {
     @NotNull(message = "Potência é obrigatório")
     @Min(value = 1, message = "Potência deve ser positiva")
     private Integer potencia;
+
+    private Long casaId;
 }
