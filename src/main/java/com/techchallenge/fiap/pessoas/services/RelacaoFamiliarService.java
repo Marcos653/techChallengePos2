@@ -46,8 +46,9 @@ public class RelacaoFamiliarService {
     }
 
     @Transactional
-    public void deleteById(Long id) {
+    public String deleteById(Long id) {
         repository.deleteById(findRelacaoById(id).getId());
+        return "Relação familiar com ID " + id + " foi deletado com sucesso.";
     }
 
     public RelacaoFamiliar findRelacaoById(Long id) {

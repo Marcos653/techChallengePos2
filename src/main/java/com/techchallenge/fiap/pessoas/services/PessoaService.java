@@ -57,8 +57,9 @@ public class PessoaService {
     }
 
     @Transactional
-    public void deleteById(Long id) {
+    public String deleteById(Long id) {
         repository.deleteById(findPessoaById(id).getId());
+        return "Pessoa com ID " + id + " foi deletada com sucesso.";
     }
 
     private void updatePessoaFromRequest(PessoaRequest request, Pessoa pessoa) {

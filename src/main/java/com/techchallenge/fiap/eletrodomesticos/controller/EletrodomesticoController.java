@@ -43,8 +43,7 @@ public class EletrodomesticoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.deleteById(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        return ResponseEntity.ok(service.deleteById(id));
     }
 }

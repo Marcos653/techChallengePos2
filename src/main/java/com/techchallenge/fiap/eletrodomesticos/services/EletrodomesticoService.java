@@ -57,8 +57,9 @@ public class EletrodomesticoService {
     }
 
     @Transactional
-    public void deleteById(Long id) {
+    public String deleteById(Long id) {
         repository.deleteById(findEletrodomesticoById(id).getId());
+        return "Eletrodomestico com ID " + id + " foi deletado com sucesso.";
     }
 
     public Eletrodomestico findEletrodomesticoById(Long id) {

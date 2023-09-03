@@ -51,9 +51,9 @@ public class PessoaEletrodomesticoService {
     }
 
     @Transactional
-    public void deleteById(Long id) {
-        var entity = findPessoaEletrodomesticoById(id);
-        repository.deleteById(entity.getId());
+    public String deleteById(Long id) {
+        repository.deleteById(findPessoaEletrodomesticoById(id).getId());
+        return "Pessoa eletrodomestico com ID " + id + " foi deletado com sucesso.";
     }
 
     public Double getConsumoEnergetico(Long id) {

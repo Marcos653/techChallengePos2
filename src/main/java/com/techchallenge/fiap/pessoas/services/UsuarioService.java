@@ -50,8 +50,9 @@ public class UsuarioService {
     }
 
     @Transactional
-    public void deleteById(Long id) {
+    public String deleteById(Long id) {
         repository.deleteById(findUsuarioById(id).getId());
+        return "Usuario com ID " + id + " foi deletado com sucesso.";
     }
 
     private void updateUsuarioFromRequest(UsuarioRequest request, Usuario usuario) {
